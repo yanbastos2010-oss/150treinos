@@ -3,18 +3,28 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function App() {
   const [showDownsell, setShowDownsell] = useState(false);
+  const [showBasicUpsell, setShowBasicUpsell] = useState(false);
+  const [currentFeedback, setCurrentFeedback] = useState(0);
+  const feedbacks = [
+    'https://i.ibb.co/vx4vnvbP/Chat-GPT-Image-3-de-jun-de-2026-22-14-14.png',
+    'https://i.ibb.co/R4gzttWW/Chat-GPT-Image-3-de-jun-de-2026-22-03-35.png',
+    'https://i.ibb.co/PvQZm6y9/Chat-GPT-Image-3-de-jun-de-2026-21-42-52.png'
+  ];
+
+  const nextFeedback = () => setCurrentFeedback((prev) => (prev + 1) % feedbacks.length);
+  const prevFeedback = () => setCurrentFeedback((prev) => (prev - 1 + feedbacks.length) % feedbacks.length);
 
   return (
     <div className="bg-white text-gray-900 font-sans">
       {/* Downsell Modal */}
       {showDownsell && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className="relative w-full max-w-md max-h-[95vh] sm:max-h-[90vh] bg-white rounded-2xl md:rounded-[1.5rem] flex flex-col font-sans shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 border-4 border-[#FACC15]">
-            <div className="bg-[#FACC15] text-center pt-5 pb-4 px-4 sm:pt-6 sm:px-6 sm:pb-5 relative shrink-0">
+          <div className="relative w-full max-w-md max-h-[95vh] sm:max-h-[90vh] bg-white rounded-2xl md:rounded-[1.5rem] flex flex-col font-sans shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 border-4 border-[#00B259]">
+            <div className="bg-[#00B259] text-center pt-5 pb-4 px-4 sm:pt-6 sm:px-6 sm:pb-5 relative shrink-0">
               <button 
                 type="button" 
                 onClick={() => setShowDownsell(false)}
@@ -33,14 +43,14 @@ export default function App() {
               <p className="text-slate-600 font-medium text-xs sm:text-sm mb-4 leading-relaxed max-w-[300px]">Leve o <strong className="text-slate-800">PACOTE COMPLETO</strong> agora com todos os bônus incluídos por um valor especial:</p>
               <div className="mb-5 sm:mb-6 flex flex-col items-center shrink-0">
                 <div className="text-slate-400 line-through text-[10px] sm:text-xs font-semibold mb-1">De R$ 147,00</div>
-                <div className="flex items-baseline justify-center text-[#ca8a04]">
+                <div className="flex items-baseline justify-center text-[#009A4D]">
                   <span className="text-base sm:text-xl font-bold">R$</span><span className="text-5xl sm:text-6xl font-black tracking-tighter mx-1">14</span><span className="text-base sm:text-xl font-bold">,99</span>
                 </div>
-                <div className="text-[#ca8a04] text-[10px] sm:text-xs font-black uppercase tracking-wide mt-1">ECONOMIZE +R$ 132,01 AGORA!</div>
+                <div className="text-[#009A4D] text-[10px] sm:text-xs font-black uppercase tracking-wide mt-1">ECONOMIZE +R$ 132,01 AGORA!</div>
               </div>
               <div className="w-full space-y-3 sm:space-y-4 shrink-0 mt-auto">
-                <a href="https://checkout.pagmaterial.shop/VCCL1O8SD0WP" className="px-4 sm:px-8 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap animate-pulse-scale w-full bg-[#FACC15] hover:bg-[#EAB308] text-gray-900 font-black text-[13px] sm:text-[14px] py-3.5 sm:py-4 rounded-xl shadow-[0_0_20px_rgba(250,204,21,0.4)] uppercase tracking-wide">SIM! QUERO O PREMIUM (R$ 14,99)</a>
-                <a href="https://checkout.pagmaterial.shop/VCCL1O8SD0WO" onClick={() => setShowDownsell(false)} className="text-slate-500 text-center font-medium text-[11px] sm:text-xs hover:text-slate-800 transition-colors underline decoration-slate-300 underline-offset-4 pb-2 sm:pb-0 block w-full">Não, prefiro continuar com o básico por R$ 10,00</a>
+                <a href="https://checkout.pagmaterial.shop/VCCL1O8SD0WP" className="px-4 sm:px-8 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap animate-pulse-scale w-full bg-[#00B259] hover:bg-[#009A4D] text-white font-black text-[13px] sm:text-[14px] py-3.5 sm:py-4 rounded-xl shadow-[0_0_20px_rgba(0,178,89,0.4)] uppercase tracking-wide">SIM! QUERO O PREMIUM (R$ 14,99)</a>
+                <a href="https://checkout.materialcompleto.shop/VCCL1O8SD2NG" onClick={() => setShowDownsell(false)} className="text-slate-500 text-center font-medium text-[11px] sm:text-xs hover:text-slate-800 transition-colors underline decoration-slate-300 underline-offset-4 pb-2 sm:pb-0 block w-full">Não, prefiro continuar com o básico por R$ 10,00</a>
               </div>
             </div>
             <div className="bg-slate-50 py-3 sm:py-4 px-4 sm:px-6 flex items-center justify-center gap-3 sm:gap-6 border-t border-slate-100 shrink-0">
@@ -48,40 +58,121 @@ export default function App() {
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-check text-emerald-500" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg> Compra Segura
               </div>
               <div className="flex items-center gap-1.5 text-slate-500 text-[10px] sm:text-[11px] font-medium">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#fbbf24" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#00B259" stroke="#00B259" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                 Acesso Imediato
               </div>
             </div>
           </div>
         </div>
       )}
-
-      <div className="bg-[#D92525] text-white py-2 px-2 sm:px-4 shadow-md relative overflow-hidden">
-        <div className="max-w-4xl mx-auto flex items-center justify-center gap-2 sm:gap-4 relative z-10">
-          <p className="text-sm font-black uppercase tracking-wide leading-none text-center sm:text-left whitespace-nowrap">
-            OFERTA VÁLIDA ATÉ:
-          </p>
-          <div className="bg-white text-[#D92525] rounded-md px-2 py-0.5 font-black text-sm shadow-sm">
-            {new Date().toLocaleDateString('pt-BR')}
+      {showBasicUpsell && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm">
+          <div className="relative w-full max-w-[420px] max-h-[90vh] sm:max-h-[90vh] bg-white rounded-2xl md:rounded-[1.5rem] flex flex-col font-sans shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 border-4 border-[#00B259]">
+            <div className="bg-[#00B259] text-center pt-5 pb-4 px-5 sm:pt-6 sm:px-6 sm:pb-5 relative shrink-0">
+              <button 
+                type="button" 
+                onClick={() => setShowBasicUpsell(false)}
+                className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-full transition-all cursor-pointer"
+                aria-label="Fechar"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+              </button>
+              <div className="inline-block bg-white text-[#00B259] text-[10px] sm:text-xs font-black uppercase px-3 py-1 rounded-full mb-1.5 sm:mb-3 tracking-wide">OFERTA VÁLIDA SÓ NESTE MOMENTO</div>
+              <h3 className="text-[19px] sm:text-2xl font-black italic tracking-tight leading-none uppercase text-white">Espere! Antes de finalizar...</h3>
+            </div>
+            
+            <div className="px-4 py-4.5 sm:p-7 text-center flex flex-col items-center overflow-y-auto w-full">
+              <p className="text-slate-600 font-semibold text-[12.5px] sm:text-sm mb-3.5 leading-relaxed max-w-[340px] mt-0.5 sm:mt-0">
+                Você escolheu o plano básico de <strong className="text-slate-800">R$ 10,00</strong>, mas por apenas <strong className="text-[#00B259]">R$ 9,90 a mais</strong> pode liberar o <span className="text-slate-800 font-normal">Pacote Completo</span>, com acesso total a +250 Dinâmicas de Treinos de Goleiros e todos os bônus.
+              </p>
+ 
+               <div className="w-full mb-4 sm:mb-6 text-left shrink-0 max-w-[340px] mx-auto bg-slate-50 p-3.5 sm:p-4 rounded-xl border border-slate-200">
+                <div className="flex flex-col items-center pb-2.5 sm:pb-3.5 border-b border-slate-200/80">
+                  <div className="flex items-baseline justify-center text-[#009A4D]">
+                    <span className="text-base sm:text-xl font-bold">R$</span><span className="text-[48px] sm:text-6xl font-black tracking-tighter mx-1 leading-none">19</span><span className="text-base sm:text-xl font-bold">,90</span>
+                  </div>
+                </div>
+ 
+                <div className="space-y-2 sm:space-y-2.5 mt-2.5 sm:mt-3.5">
+                  <div className="flex items-center gap-2 text-[10.5px] sm:text-[12px] font-bold text-slate-700 leading-tight">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check text-[#00B259] shrink-0" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    <span>+250 DINÂMICAS PARA TREINOS DE GOLEIROS</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[10.5px] sm:text-[12px] font-bold text-slate-700 leading-tight">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check text-[#00B259] shrink-0" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    <span>ACESSO VITALÍCIO + ATUALIZAÇÕES</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[10.5px] sm:text-[12px] font-bold text-slate-700 leading-tight">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check text-[#00B259] shrink-0" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                    <span>BÔNUS EXCLUSIVOS</span>
+                  </div>
+                </div>
+              </div>
+ 
+              <div className="w-full space-y-2.5 sm:space-y-4 shrink-0 mt-auto">
+                <a 
+                  href="https://checkout.materialcompleto.shop/VCCL1O8SD2NF" 
+                  className="px-5 transition-all flex items-center justify-center gap-2 cursor-pointer w-full bg-[#00B259] hover:bg-[#009A4D] text-white font-black text-[13px] sm:text-[15px] py-3.5 sm:py-4 rounded-xl shadow-[0_4px_20px_rgba(0,178,89,0.35)] uppercase tracking-wide text-center"
+                >
+                  SIM, QUERO O PLANO COMPLETO!
+                </a>
+                <a 
+                  href="https://checkout.materialcompleto.shop/VCCL1O8SD2NG" 
+                  onClick={() => setShowBasicUpsell(false)} 
+                  className="text-slate-500 hover:text-slate-800 text-center font-bold text-xs sm:text-sm transition-colors underline decoration-slate-300 underline-offset-4 py-1 block w-full"
+                >
+                  Não, prefiro o plano básico
+                </a>
+              </div>
+            </div>
           </div>
+        </div>
+      )}
+
+      <div className="w-full bg-slate-900 py-2.5 px-4 text-center">
+        <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs font-semibold tracking-wide text-slate-200">
+          <span className="w-2 h-2 bg-[#00B259] rounded-full animate-pulse"></span>
+          OFERTA VÁLIDA ATÉ HOJE <span className="text-white font-medium">({new Date().toLocaleDateString('pt-BR')})</span>
         </div>
       </div>
 
       <div className="max-w-4xl mx-auto pt-8">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-4 md:mb-6 text-gray-900 text-center font-['Plus_Jakarta_Sans']">
-          +150 Treinos de Futevôlei <br className="hidden md:block" /> prontos para aplicar <span className="bg-gradient-to-r from-[#FACC15] to-[#EAB308] bg-clip-text text-transparent uppercase">+ Bônus</span>
+        <h1 className="text-[30px] font-black leading-tight mb-4 md:mb-6 text-gray-900 text-center font-['Plus_Jakarta_Sans']">
+          +250 Dinâmicas para <span className="text-[#00B259]">Treinos de Goleiros</span> prontas para aplicar
         </h1>
-        <p className="text-sm md:text-lg text-gray-600 mb-6 md:mb-8 max-w-2xl mx-auto text-center">
-          Treinos organizados por categorias, explicados e aplicáveis mesmo sem quadra ou parceiro.
-        </p>
-        <div className="mb-8 md:mb-10 flex justify-center">
-          <img decoding="async" alt="Treinos de Futefutevôlei" className="max-w-full h-auto" referrerPolicy="no-referrer" src="https://i.ibb.co/TqDpcx65/Untitled-design-3.png" />
+
+        <div className="mb-8 md:mb-10 flex justify-center px-4 sm:px-0">
+          <img decoding="async" alt="Treinos de Goleiros Mockup" className="max-w-full h-auto drop-shadow-md rounded-lg" referrerPolicy="no-referrer" src="https://i.ibb.co/Qjx0XrXb/Untitled-design-7.webp" />
         </div>
         <div className="flex flex-col items-center pb-8 md:pb-16 mt-4">
-          <a onClick={(e) => { e.preventDefault(); document.getElementById('oferta')?.scrollIntoView({ behavior: 'smooth' }); }} href="#oferta" className="px-4 py-3 sm:px-6 sm:py-3.5 rounded-full font-bold transition-all flex items-center justify-center gap-2 text-[13px] sm:text-base cursor-pointer whitespace-nowrap animate-pulse-scale bg-[#FACC15] hover:bg-[#EAB308] text-gray-900 shadow-lg shadow-yellow-500/20 w-[85%] max-w-[280px] sm:max-w-none sm:w-auto mx-auto">
-            Quero Evoluir Meu Jogo Agora
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right shrink-0" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-          </a>
+          <button 
+            type="button" 
+            onClick={() => document.getElementById('oferta')?.scrollIntoView({ behavior: 'smooth' })} 
+            className="w-[85%] max-w-[240px] sm:w-[220px] h-[50px] px-8 sm:px-10 rounded-full font-semibold transition-all flex items-center justify-center gap-2 text-[14px] sm:text-base cursor-pointer whitespace-nowrap bg-[#00B259] text-white hover:bg-[#009A4D] shadow-sm hover:shadow" 
+            id="6040b8d1-48ee-ef7f-0c73-c68186954454"
+          >
+            Quero Agora!
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right shrink-0" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </button>
+          <div className="mt-2 flex flex-col sm:flex-row items-center gap-2 justify-center">
+            <div className="flex items-center gap-0.5">
+              <span className="text-yellow-400 text-sm leading-none">⭐</span>
+              <span className="text-yellow-400 text-sm leading-none">⭐</span>
+              <span className="text-yellow-400 text-sm leading-none">⭐</span>
+              <span className="text-yellow-400 text-sm leading-none">⭐</span>
+              <span className="text-yellow-400 text-sm leading-none">⭐</span>
+            </div>
+            <p className="text-xs font-bold text-slate-700 tracking-wider">+5MIL AVALIAÇÕES</p>
+          </div>
         </div>
       </div>
 
@@ -89,250 +180,193 @@ export default function App() {
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 md:mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 md:mb-4 px-4 sm:px-0">O Que Você Vai Receber</h2>
-            <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto px-4 sm:px-0">Tudo o que você precisa para sair do amador ao profissional, organizado passo a passo.</p>
+
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            <div className="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 hover:shadow-lg hover:border-[#FACC15] transition-all group flex flex-col">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FACC15]/10 rounded-xl flex items-center justify-center text-[#EAB308] mb-4 sm:mb-5 group-hover:bg-[#FACC15] group-hover:text-gray-900 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-play sm:w-6 sm:h-6 shrink-0" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {/* Card 1: +250 Dinâmicas Prontas */}
+            <div className="bg-white p-6 sm:p-8 rounded-2xl border-2 border-slate-200 hover:shadow-lg transition-all flex flex-col items-center text-center">
+              <div className="w-12 h-12 bg-[#00B259] rounded-xl flex items-center justify-center text-white mb-5 shadow-[0_4px_12px_rgba(0,178,89,0.2)]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trophy w-6 h-6 shrink-0" aria-hidden="true"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"></path><path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"></path><path d="M18 9h1.5a1 1 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"></path><path d="M6 9H4.5a1 1 0 0 1 0-5H6"></path></svg>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 leading-tight">+150 Treinos de Futevôlei</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">Treinos prontos, organizados e simples de executar. É só abrir, escolher e começar, sem precisar pensar no que fazer.</p>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 leading-tight">+250 Dinâmicas Prontas</h3>
+              <p className="text-[13px] sm:text-sm text-slate-600 leading-relaxed">Dinâmicas organizadas e fáceis de aplicar nos treinos. É só abrir e começar.</p>
             </div>
-            <div className="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 hover:shadow-lg hover:border-[#FACC15] transition-all group flex flex-col">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FACC15]/10 rounded-xl flex items-center justify-center text-[#EAB308] mb-4 sm:mb-5 group-hover:bg-[#FACC15] group-hover:text-gray-900 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trophy sm:w-6 sm:h-6 shrink-0" aria-hidden="true"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"></path><path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"></path><path d="M18 9h1.5a1 1 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"></path><path d="M6 9H4.5a1 1 0 0 1 0-5H6"></path></svg>
+
+            {/* Card 2: Para Todos os Níveis */}
+            <div className="bg-white p-6 sm:p-8 rounded-2xl border-2 border-slate-200 hover:shadow-lg transition-all flex flex-col items-center text-center">
+              <div className="w-12 h-12 bg-[#00B259] rounded-xl flex items-center justify-center text-white mb-5 shadow-[0_4px_12px_rgba(0,178,89,0.2)]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-book-open w-6 h-6 shrink-0" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 leading-tight">Treinos para Todos os Níveis</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">Do iniciante ao intermediário. Você começa do básico e evolui de forma natural, sem travar.</p>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 leading-tight">Para Todos os Níveis</h3>
+              <p className="text-[13px] sm:text-sm text-slate-600 leading-relaxed">Do iniciante ao avançado, com evolução técnica progressiva.</p>
             </div>
-            <div className="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 hover:shadow-lg hover:border-[#FACC15] transition-all group flex flex-col">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FACC15]/10 rounded-xl flex items-center justify-center text-[#EAB308] mb-4 sm:mb-5 group-hover:bg-[#FACC15] group-hover:text-gray-900 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-book-open sm:w-6 sm:h-6 shrink-0" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>
+
+            {/* Card 3: 100% Organizado */}
+            <div className="bg-white p-6 sm:p-8 rounded-2xl border-2 border-slate-200 hover:shadow-lg transition-all flex flex-col items-center text-center">
+              <div className="w-12 h-12 bg-[#00B259] rounded-xl flex items-center justify-center text-white mb-5 shadow-[0_4px_12px_rgba(0,178,89,0.2)]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-target w-6 h-6 shrink-0" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 leading-tight">100% Organizados</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">Todos os treinos são divididos por nível, objetivo e fundamento (controle, levantamento, ataque, defesa, posicionamento, etc.).</p>
-            </div>
-            <div className="bg-white p-5 sm:p-6 rounded-2xl border-2 border-slate-200 hover:shadow-lg hover:border-[#FACC15] transition-all group flex flex-col">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FACC15]/10 rounded-xl flex items-center justify-center text-[#EAB308] mb-4 sm:mb-5 group-hover:bg-[#FACC15] group-hover:text-gray-900 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-target sm:w-6 sm:h-6 shrink-0" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-              </div>
-              <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 leading-tight">Estrutura Pronta</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">Cada treino já vem com objetivo, tempo, execução e meta clara, pra você simplesmente seguir e evoluir sem dúvidas.</p>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 leading-tight">100% Organizadas</h3>
+              <p className="text-[13px] sm:text-sm text-slate-600 leading-relaxed">Separadas por nível, objetivo e fundamento (posicionamento, defesas, saídas do gol, reposição, 1x1 e mais).</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-12 md:py-16 px-4 bg-white border-t-4 border-white">
-        <div className="container mx-auto px-4 sm:px-6"><div className="w-full max-w-3xl mx-auto"><div className="md:mb-12 text-center mb-8"><h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 md:mb-4 px-4 sm:px-0">Benefícios Exclusivos</h2><p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto px-4 sm:px-0">Vantagens que você só encontra aqui nesta metodologia exclusiva.</p></div><ul className="space-y-6"><li className="flex flex-col sm:flex-row sm:items-start items-center text-center sm:text-left gap-3 sm:gap-4 p-5 sm:p-6 bg-white rounded-2xl border-2 border-slate-200 shadow-sm"><div className="flex-shrink-0 w-10 h-10 sm:w-8 sm:h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center sm:mt-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check sm:w-[18px] sm:h-[18px]" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg></div><div><h4 className="font-bold text-slate-900 mb-1">Treine em Qualquer Lugar</h4><p className="text-slate-600 text-[13px] sm:text-sm">Exercícios adaptáveis para quadras ou espaços pequenos em casa.</p></div></li><li className="flex flex-col sm:flex-row sm:items-start items-center text-center sm:text-left gap-3 sm:gap-4 p-5 sm:p-6 bg-white rounded-2xl border-2 border-slate-200 shadow-sm"><div className="flex-shrink-0 w-10 h-10 sm:w-8 sm:h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center sm:mt-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check sm:w-[18px] sm:h-[18px]" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg></div><div><h4 className="font-bold text-slate-900 mb-1">Metodologia Validada</h4><p className="text-slate-600 text-[13px] sm:text-sm">Baseado no treinamento de atletas de elite adaptado para todos os níveis.</p></div></li><li className="flex flex-col sm:flex-row sm:items-start items-center text-center sm:text-left gap-3 sm:gap-4 p-5 sm:p-6 bg-white rounded-2xl border-2 border-slate-200 shadow-sm"><div className="flex-shrink-0 w-10 h-10 sm:w-8 sm:h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center sm:mt-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check sm:w-[18px] sm:h-[18px]" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg></div><div><h4 className="font-bold text-slate-900 mb-1">Acesso Vitalício</h4><p className="text-slate-600 text-[13px] sm:text-sm">Pague uma vez e tenha acesso para sempre, incluindo todas as atualizações.</p></div></li><li className="flex flex-col sm:flex-row sm:items-start items-center text-center sm:text-left gap-3 sm:gap-4 p-5 sm:p-6 bg-white rounded-2xl border-2 border-slate-200 shadow-sm"><div className="flex-shrink-0 w-10 h-10 sm:w-8 sm:h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center sm:mt-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check sm:w-[18px] sm:h-[18px]" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg></div><div><h4 className="font-bold text-slate-900 mb-1">Suporte Especializado</h4><p className="text-slate-600 text-[13px] sm:text-sm">Tire suas dúvidas diretamente com nossa equipe técnica na plataforma.</p></div></li></ul>
-          <div className="mt-8 flex justify-center">
-            <a href="#oferta" className="px-4 py-3 sm:px-6 sm:py-3.5 rounded-full font-bold transition-all flex items-center justify-center gap-2 text-[13px] sm:text-base cursor-pointer whitespace-nowrap animate-pulse-scale bg-[#FACC15] hover:bg-[#EAB308] text-gray-900 shadow-lg shadow-yellow-500/20 w-[85%] max-w-[280px] sm:max-w-none sm:w-auto mx-auto" id="d0647b42-70b5-646e-c962-b86cdf78076a">Quero Garantir Minha Vaga</a>
-          </div>
-        </div></div>
-      </section>
-
-      <section className="py-12 md:py-20 px-4 bg-gray-50 border-t-4 border-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col items-center text-center mb-8 md:mb-12">
-            <div className="inline-flex items-center text-[#FACC15] border border-[#FACC15]/20 bg-[#FACC15]/5 rounded-full px-4 py-1.5 text-xs md:text-sm font-bold uppercase tracking-wider mb-3 md:mb-5">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-gift w-4 h-4 mr-2" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg> BÔNUS EXCLUSIVOS
-            </div>
-            <h2 className="text-2xl md:text-4xl font-black text-gray-900 mb-3 md:mb-4 tracking-tight">Receba 3 Bônus <span className="text-[#FACC15]">Exclusivos</span></h2>
-            <p className="text-sm md:text-lg text-gray-600 max-w-2xl">Hoje você também recebe esses materiais sem custo adicional.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-            <div className="bg-white rounded-2xl border-2 border-[#FACC15] shadow-[0_0_15px_rgba(250,204,21,0.1)] flex flex-col overflow-hidden hover:shadow-[0_0_25px_rgba(250,204,21,0.2)] transition-all h-full text-center group">
-              <div className="bg-gray-50 h-56 md:h-72 flex items-center justify-center p-4">
-                <img loading="lazy" decoding="async" alt="Certificado" className="max-w-full max-h-full object-contain rounded-xl shadow-sm" src="https://i.ibb.co/ymXfZyFV/c63229f6-4152-4b66-af6b-d4e929eb7e2e.png" />
-              </div>
-              <div className="p-4 flex flex-col flex-grow">
-                <h3 className="text-xl font-black text-gray-900 mb-1 leading-tight">Certificado de Conclusão</h3>
-                <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-4 flex-grow">Comprove sua evolução no futevôlei com um certificado ao finalizar o treinamento.</p>
-                <div className="mt-auto pt-3 border-t border-gray-100 flex items-center justify-center gap-3">
-                  <span className="text-red-500 line-through text-sm font-medium">R$ 49,90</span>
-                  <div className="bg-[#FACC15] text-gray-900 font-black px-3 py-1 rounded text-[10px] uppercase tracking-tighter">GRÁTIS</div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white rounded-2xl border-2 border-[#FACC15] shadow-[0_0_15px_rgba(250,204,21,0.1)] flex flex-col overflow-hidden hover:shadow-[0_0_25px_rgba(250,204,21,0.2)] transition-all h-full text-center group">
-              <div className="bg-gray-50 h-56 md:h-72 flex items-center justify-center p-4">
-                <img loading="lazy" decoding="async" alt="Dinâmicas" className="max-w-full max-h-full object-contain rounded-xl shadow-sm" src="https://i.ibb.co/b4BJjSc/03e484be-7e78-4705-a3d9-7f8f4da1b294.png" />
-              </div>
-              <div className="p-4 flex flex-col flex-grow">
-                <h3 className="text-xl font-black text-gray-900 mb-1 leading-tight">+50 Aquecimentos Prontos</h3>
-                <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-4 flex-grow">Aquecimentos prontos que já ensinam fundamento e deixam a aula fluir melhor.</p>
-                <div className="mt-auto pt-3 border-t border-gray-100 flex items-center justify-center gap-3">
-                  <span className="text-red-500 line-through text-sm font-medium">R$ 34,90</span>
-                  <div className="bg-[#FACC15] text-gray-900 font-black px-3 py-1 rounded text-[10px] uppercase tracking-tighter">GRÁTIS</div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white rounded-2xl border-2 border-[#FACC15] shadow-[0_0_15px_rgba(250,204,21,0.1)] flex flex-col overflow-hidden hover:shadow-[0_0_25px_rgba(250,204,21,0.2)] transition-all h-full text-center group">
-              <div className="bg-gray-50 h-56 md:h-72 flex items-center justify-center p-4">
-                <img loading="lazy" decoding="async" alt="Aquecimentos" className="max-w-full max-h-full object-contain rounded-xl shadow-sm" src="https://i.ibb.co/Q7c01vQ5/dee56dcd-e461-4a57-840a-f5e45fb9c556.png" />
-              </div>
-              <div className="p-4 flex flex-col flex-grow">
-                <h3 className="text-xl font-black text-gray-900 mb-1 leading-tight">Ranking & Desafios</h3>
-                <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-4 flex-grow">Modelos prontos para criar competição, engajar alunos e aumentar a frequência.</p>
-                <div className="mt-auto pt-3 border-t border-gray-100 flex items-center justify-center gap-3">
-                  <span className="text-red-500 line-through text-sm font-medium">R$ 24,90</span>
-                  <div className="bg-[#FACC15] text-gray-900 font-black px-3 py-1 rounded text-[10px] uppercase tracking-tighter">GRÁTIS</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="oferta" className="py-12 md:py-20 px-4 bg-white border-t-4 border-white">
-        <div className="max-w-3xl mx-auto text-center mb-8 md:mb-12">
-          <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 tracking-tight">Ofertas Exclusivas</h2>
-          <p className="text-base md:text-lg text-gray-600">Escolha o melhor plano para sua evolução na areia.</p>
-        </div>
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 md:gap-8 items-stretch mt-4 md:mt-8">
-          <div className="bg-white p-6 sm:p-10 rounded-xl border-2 border-slate-200 flex flex-col hover:border-[#FACC15] transition-all shadow-sm">
-            <h3 className="text-xl sm:text-2xl font-black mb-4 text-slate-900 uppercase tracking-tight text-center sm:text-left">Pacote Básico</h3>
-            <div className="mb-6 text-center sm:text-left">
-              <div className="text-red-500 line-through font-bold text-sm mb-1">R$ 47,00</div>
-              <div className="flex items-baseline justify-center sm:justify-start mb-1 text-[#FACC15]">
-                <span className="text-xl font-bold">R$</span><span className="text-4xl sm:text-5xl font-black tracking-tighter">10</span><span className="text-xl font-bold">,00</span>
-              </div>
-              <div className="text-slate-500 text-xs">pagamento único</div>
-            </div>
-            <ul className="text-left w-full space-y-3 mb-8 sm:mb-10 flex-1">
-              <li className="flex items-center gap-3 text-slate-700 text-[13px] sm:text-sm font-medium">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check text-[#FACC15] shrink-0 bg-yellow-50 rounded-full" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
-                <span className="leading-tight">150 Treinos de Futevôlei</span>
-              </li>
-              <li className="flex items-center gap-3 text-slate-700 text-[13px] sm:text-sm font-medium">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check text-[#FACC15] shrink-0 bg-yellow-50 rounded-full" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
-                <span className="leading-tight">Acesso Vitalício</span>
-              </li>
-              <li className="flex items-center gap-3 text-slate-700 text-[13px] sm:text-sm font-medium">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check text-[#FACC15] shrink-0 bg-yellow-50 rounded-full" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
-                <span className="leading-tight">Acesso Imediato</span>
-              </li>
-              <li className="flex items-center gap-3 text-slate-700 text-[13px] sm:text-sm font-medium">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check text-[#FACC15] shrink-0 bg-yellow-50 rounded-full" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
-                <span className="leading-tight">Entrega Via Email + WhatsApp</span>
-              </li>
-              <li className="flex items-center gap-3 text-slate-700 text-[13px] sm:text-sm font-medium">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check text-[#FACC15] shrink-0 bg-yellow-50 rounded-full" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
-                <span className="leading-tight">Garantia de 7 Dias</span>
-              </li>
-            </ul>
-            <button onClick={() => setShowDownsell(true)} type="button" className="px-4 sm:px-8 sm:py-4 rounded-full transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap animate-pulse-scale bg-transparent border-2 w-full text-gray-900 border-gray-200 hover:border-[#FACC15] hover:bg-yellow-50 font-black py-4 uppercase tracking-wide text-xs sm:text-sm">COMPRAR AGORA</button>
-          </div>
-          <div className="bg-white p-6 sm:p-10 rounded-xl border-[3px] border-[#FACC15] flex flex-col items-center relative shadow-xl mt-4 md:mt-0">
-            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#FACC15] text-gray-900 font-black px-6 py-1.5 rounded-full text-xs flex items-center gap-2 shadow-sm whitespace-nowrap">👑 MAIS VENDIDO</div>
-            <h3 className="text-2xl sm:text-3xl font-black mb-6 text-center text-slate-900 uppercase tracking-tight mt-2 sm:mt-0">Pacote Completo</h3>
-            <div className="w-full max-w-[180px] sm:max-w-[200px] mb-6 sm:mb-8"><img loading="lazy" decoding="async" alt="Pacote Completo" className="w-full h-auto rounded-lg shadow-sm" src="https://i.ibb.co/TqDpcx65/Untitled-design-3.png" /></div>
-            <ul className="text-left w-full space-y-2.5 sm:space-y-3 mb-6 sm:mb-8">
-              {[
-                "+150 Treinos de Futevôlei",
-                "+30 Treinos de Controle de Bola",
-                "+25 Treinos de Ataque",
-                "+20 Treinos de Precisão e Direcionamento",
-                "+20 Treinos de Movimentação",
-                "+15 Treinos de Velocidade e Reflexo",
-                "+10 Treinos de Defesa e Recuperação",
-                "+10 Treinos de Combinações e Estratégia",
-                "+10 Treinos para Fazer Sozinho",
-                "+10 Treinos Rápidos (10 Minutos)",
-                "Acesso Imediato",
-                "Acesso Vitalício",
-                "Garantia de 7 Dias",
-                "Atualizações",
-                "Suporte Prioritário"
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-slate-700 text-[13px] sm:text-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check text-[#FACC15] shrink-0 mt-0.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
-                  <span className="leading-tight">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="bg-[#fffdf0] border border-[#f5ead2] rounded-xl p-4 sm:p-5 w-full mb-6 sm:mb-8">
-              <div className="text-[#b46b0a] font-bold text-[10px] sm:text-xs mb-3 uppercase tracking-wider">Bônus Inclusos:</div>
-              <ul className="space-y-2.5">
-                <li className="flex items-start gap-2 text-slate-800 font-medium text-[13px] sm:text-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-gift text-[#d9810b] shrink-0 mt-0.5" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg>
-                  <span className="leading-tight">Certificado de Conclusão</span>
-                </li>
-                <li className="flex items-start gap-2 text-slate-800 font-medium text-[13px] sm:text-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-gift text-[#d9810b] shrink-0 mt-0.5" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg>
-                  <span className="leading-tight">+50 Aquecimentos Prontos</span>
-                </li>
-                <li className="flex items-start gap-2 text-slate-800 font-medium text-[13px] sm:text-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-gift text-[#d9810b] shrink-0 mt-0.5" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg>
-                  <span className="leading-tight">Ranking & Desafios</span>
-                </li>
-              </ul>
-            </div>
-            <div className="text-center w-full mb-5 sm:mb-6">
-              <div className="text-red-500 line-through font-bold text-sm mb-1">R$ 147,00</div>
-              <div className="text-slate-500 text-[13px] sm:text-sm mb-1">Por apenas</div>
-              <div className="flex items-baseline justify-center mb-1 text-[#FACC15]">
-                <span className="text-xl sm:text-2xl font-bold">R$</span><span className="text-5xl sm:text-7xl font-black tracking-tighter">19</span><span className="text-xl sm:text-2xl font-bold">,99</span>
-              </div>
-              <div className="text-slate-400 text-[10px] sm:text-xs mb-2 sm:mb-3">pagamento único</div>
-              <div className="text-gray-600 font-bold text-[13px] sm:text-sm">Você economiza R$127,01</div>
-            </div>
-            <div className="flex items-center gap-2 text-[10px] sm:text-xs text-slate-500 mb-5 sm:mb-6 font-medium">
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#FACC15]"></div>+1.736 pessoas escolheram essa oferta
-            </div>
-            <a href="https://checkout.pagmaterial.shop/VCCL1O8SD0WQ" className="px-4 sm:px-8 rounded-full transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap animate-pulse-scale shadow-[0_0_20px_rgba(250,204,21,0.4)] w-full bg-[#FACC15] hover:bg-[#EAB308] text-gray-900 font-black py-3.5 sm:py-4 uppercase tracking-wide text-xs sm:text-sm">Quero o Pacote Completo</a>
-          </div>
-        </div>
-        <div className="mt-10 sm:mt-16 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8 text-sm sm:text-base text-slate-500 sm:text-slate-400 font-medium sm:font-normal">
-          <div className="flex items-center gap-2 bg-slate-100 sm:bg-transparent px-4 py-2 sm:px-0 sm:py-0 rounded-full sm:rounded-none w-full sm:w-auto justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shield-check sm:w-5 sm:h-5 text-slate-600 sm:text-slate-400" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg> Compra 100% Segura
-          </div>
-          <div className="flex items-center gap-2 bg-slate-100 sm:bg-transparent px-4 py-2 sm:px-0 sm:py-0 rounded-full sm:rounded-none w-full sm:w-auto justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar sm:w-5 sm:h-5 text-slate-600 sm:text-slate-400" aria-hidden="true"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg> 7 Dias de Garantia
-          </div>
-          <div className="flex items-center gap-2 bg-slate-100 sm:bg-transparent px-4 py-2 sm:px-0 sm:py-0 rounded-full sm:rounded-none w-full sm:w-auto justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-zap sm:w-5 sm:h-5 text-slate-600 sm:text-slate-400" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg> Acesso Imediato
-          </div>
-        </div>
-      </section>
-
-      <section className="py-10 sm:py-16 md:py-24 bg-slate-50 border-t border-slate-200">
+      <section className="py-16 md:py-24 bg-white" id="feedbacks">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="text-[#b45309] font-bold mb-1 sm:mb-2 text-sm sm:text-base">Sobre o Autor</div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-1 sm:mb-2">Professor Marcos</h2>
-            <div className="text-slate-500 text-sm sm:text-lg mb-6 sm:mb-10">Especialista em Futevôlei Esportivo</div>
-            <div className="flex justify-center mb-6 sm:mb-12">
-              <div className="w-28 h-28 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full p-1 sm:p-2 bg-yellow-50 border-2 border-yellow-100 mx-auto">
-                <img loading="lazy" decoding="async" alt="Professor Marcos" className="w-full h-full object-cover rounded-full" src="https://i.ibb.co/vvPhpSZ5/aa1995fd-bc97-41b9-a27e-e34a3b1611b0.png" />
+          <div className="text-center mb-10 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 md:mb-4 px-2 sm:px-0 whitespace-nowrap">Feedbacks de quem usou</h2>
+          </div>
+          <div className="max-w-[280px] sm:max-w-xl mx-auto relative group">
+            <div className="overflow-hidden rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl bg-slate-900">
+              <div 
+                className="flex transition-transform duration-500 ease-out" 
+                style={{ transform: `translateX(-${currentFeedback * 100}%)` }}
+              >
+                {feedbacks.map((src, index) => (
+                  <div key={index} className="w-full flex-shrink-0">
+                    <img alt={`Feedback ${index + 1}`} className="w-full h-auto object-cover" src={src} />
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-2 sm:gap-8 mb-8 sm:mb-12">
-              <div className="flex flex-col items-center">
-                <div className="w-10 h-10 sm:w-16 sm:h-16 bg-yellow-50 text-[#ca8a04] rounded-full flex items-center justify-center mb-2 sm:mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-award sm:w-7 sm:h-7" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>
+            <button 
+              onClick={prevFeedback}
+              className="absolute left-[-15px] sm:left-[-30px] top-1/2 -translate-y-1/2 w-9 h-9 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center text-slate-900 hover:bg-slate-50 transition-all shadow-lg z-30 cursor-pointer" 
+              id="2260ea4b-adca-5b4c-9091-8b439ae8ea8b"
+              aria-label="Feedback anterior"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-left sm:hidden" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-left hidden sm:block" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+            </button>
+            <button 
+              onClick={nextFeedback}
+              className="absolute right-[-15px] sm:right-[-30px] top-1/2 -translate-y-1/2 w-9 h-9 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center text-slate-900 hover:bg-slate-50 transition-all shadow-lg z-30 cursor-pointer" 
+              id="61a38552-b42b-9f64-9356-98e1ca45871a"
+              aria-label="Próximo feedback"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-right sm:hidden" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-right hidden sm:block" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+            </button>
+            <div className="flex justify-center gap-2 mt-8">
+              {feedbacks.map((_, index) => (
+                <button 
+                  key={index}
+                  onClick={() => setCurrentFeedback(index)}
+                  className={`h-2 sm:h-3 rounded-full transition-all cursor-pointer ${currentFeedback === index ? 'bg-[#00B259] w-6 sm:w-8' : 'bg-slate-300 w-2 sm:w-3'}`} 
+                  id={`feedback-dot-${index}`}
+                ></button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="oferta" className="py-12 md:py-20 px-4 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 md:mb-4 px-4 sm:px-0">Escolha seu Plano</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto px-2 sm:px-0">
+            {/* PLAN 1: R$10 (Standard / Básico) */}
+            <div className="bg-slate-50 p-6 sm:p-10 rounded-2xl border-2 border-slate-200 flex flex-col relative shadow-md text-slate-800 hover:border-slate-300 transition-all">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-center text-slate-900 mt-2 sm:mt-0">Plano Básico</h3>
+              
+              <div className="text-center w-full mb-8">
+                <div className="text-slate-400 line-through text-sm mb-1">R$ 47,00</div>
+                <div className="flex items-baseline justify-center mb-1 text-slate-950">
+                  <span className="text-xl sm:text-2xl font-bold">R$</span><span className="text-5xl sm:text-6xl font-bold tracking-tight">10</span><span className="text-xl sm:text-2xl font-bold">,00</span>
                 </div>
-                <div className="text-sm sm:text-xl font-bold text-slate-900 leading-tight mb-0.5 sm:mb-1">10+ Anos</div>
-                <div className="text-slate-500 text-[10px] sm:text-sm">Experiência na Área</div>
+                <div className="text-slate-500 text-xs mt-1">pagamento único</div>
               </div>
-              <div className="flex flex-col items-center">
-                <div className="w-10 h-10 sm:w-16 sm:h-16 bg-yellow-50 text-[#ca8a04] rounded-full flex items-center justify-center mb-2 sm:mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-users sm:w-7 sm:h-7" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
-                </div>
-                <div className="text-sm sm:text-xl font-bold text-slate-900 leading-tight mb-0.5 sm:mb-1">+2.000</div>
-                <div className="text-slate-500 text-[10px] sm:text-sm">Alunos Ajudados</div>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="w-10 h-10 sm:w-16 sm:h-16 bg-yellow-50 text-[#ca8a04] rounded-full flex items-center justify-center mb-2 sm:mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trophy sm:w-7 sm:h-7" aria-hidden="true"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"></path><path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"></path><path d="M18 9h1.5a1 1 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"></path><path d="M6 9H4.5a1 1 0 0 1 0-5H6"></path></svg>
-                </div>
-                <div className="text-sm sm:text-xl font-bold text-slate-900 leading-tight mb-0.5 sm:mb-1">Futevôlei</div>
-                <div className="text-slate-500 text-[10px] sm:text-sm">Referência Nacional</div>
+
+              <ul className="text-left w-full space-y-4 mb-8">
+                {[
+                  { text: "+250 Dinâmicas para Treinos de Goleiros", checked: true },
+                  { text: "Acesso Digital", checked: true },
+                  { text: "Garantia de 7 dias", checked: true },
+                  { text: "Bônus Exclusivos", checked: false },
+                  { text: "Atualizações Mensais", checked: false },
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-[13px] sm:text-sm">
+                    {item.checked ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check text-[#00B259] shrink-0 mt-0.5" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="m9 12 2 2 4-4"></path>
+                      </svg>
+                    ) : (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-x text-red-500 shrink-0 mt-0.5" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="m15 9-6 6"></path>
+                        <path d="m9 9 6 6"></path>
+                      </svg>
+                    )}
+                    <span className="leading-tight text-slate-700">
+                      {item.text}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-col items-center gap-3 w-full mt-auto">
+                <button 
+                  type="button"
+                  onClick={() => setShowBasicUpsell(true)}
+                  className="w-[85%] max-w-[240px] sm:w-[220px] h-[50px] px-8 sm:px-10 rounded-full font-semibold transition-all flex items-center justify-center gap-2 text-[14px] sm:text-base cursor-pointer whitespace-nowrap bg-slate-900 text-white hover:bg-slate-800 shadow-sm hover:shadow animate-scale-pulse" 
+                  id="checkout-basico-btn"
+                >
+                  Comprar agora!
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right shrink-0" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </button>
+                <div className="text-slate-500 text-xs font-medium italic">Acesso Imediato e Vitalício</div>
               </div>
             </div>
-            <div className="bg-white p-4 sm:p-8 md:p-10 rounded-2xl md:rounded-3xl border-2 border-slate-200 text-slate-600 italic text-xs sm:text-base md:text-lg text-center shadow-sm">
-              "Fui atleta de futevôlei e sei exatamente onde os jogadores amadores mais erram. Desenvolvi um método focado em organização, progressão técnica e aplicação simples, tanto para atletas quanto para professores que precisam de uma estrutura pronta para evoluir na areia ou ensinar com mais qualidade."
+
+            {/* PLAN 2: R$27 (Premium / Profissional Completo) */}
+            <div className="bg-slate-900 p-6 sm:p-10 rounded-2xl border border-slate-800 flex flex-col relative shadow-xl text-white">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#00B259] text-white font-bold px-6 py-1.5 rounded-full text-xs flex items-center gap-2 whitespace-nowrap uppercase tracking-wider">Mais Escolhido</div>
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-center text-white mt-2 sm:mt-0">Plano Premium</h3>
+              
+              <div className="mt-4"></div>
+
+              <div className="text-center w-full mb-8">
+                <div className="text-slate-400 line-through text-sm mb-1">R$ 97,00</div>
+                <div className="flex items-baseline justify-center mb-1 text-white">
+                  <span className="text-xl sm:text-2xl font-bold">R$</span><span className="text-5xl sm:text-6xl font-bold tracking-tight">27</span><span className="text-xl sm:text-2xl font-bold">,00</span>
+                </div>
+                <div className="text-slate-400 text-xs mt-1">pagamento único</div>
+              </div>
+
+              <ul className="text-left w-full space-y-4 mb-8">
+                {[
+                  "+250 Dinâmicas para Treinos de Goleiros",
+                  "Organizadas por Categorias",
+                  "Método Passo a Passo",
+                  "+ Bônus Exclusivos",
+                  "Atualizações Mensais",
+                  "Entrega via WhatsApp + Email",
+                  "Suporte VIP 24/7",
+                  "Garantia de 7 dias",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-slate-300 text-[13px] sm:text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check text-[#00B259] shrink-0 mt-0.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+                    <span className="leading-tight">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-col items-center gap-3 w-full mt-auto">
+                <a 
+                  href="https://checkout.materialcompleto.shop/VCCL1O8SD2NE" 
+                  className="w-[85%] max-w-[240px] sm:w-[220px] h-[50px] px-8 sm:px-10 rounded-full font-semibold transition-all flex items-center justify-center gap-2 text-[14px] sm:text-base cursor-pointer whitespace-nowrap bg-[#00B259] text-white hover:bg-[#009A4D] shadow-sm hover:shadow animate-scale-pulse" 
+                  id="checkout-premium-btn"
+                >
+                  Comprar agora!
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right shrink-0" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </a>
+                <div className="text-slate-400 text-xs font-medium italic">Acesso Imediato e Vitalício</div>
+              </div>
             </div>
           </div>
         </div>
@@ -343,33 +377,33 @@ export default function App() {
           <h2 className="text-2xl md:text-3xl font-semibold text-center mb-8 md:mb-10 text-gray-900">Dúvidas Frequentes</h2>
           {[
             {
-              q: "O acesso é vitalício?",
-              a: "Sim! Você paga uma vez e o curso é seu para sempre, incluindo todas as atualizações futuras e novos treinos que adicionarmos."
-            },
-            {
-              q: "Serve para quem nunca jogou?",
-              a: "Com certeza. Temos módulos básicos que ensinam desde a pegada na raquete até exercícios para quem já está em nível intermediário/avançado (adapte para futevolei)"
-            },
-            {
               q: "Como vou receber o acesso?",
-              a: "O acesso é imediato logo após a confirmação do pagamento. Você receberá um e-mail com seus dados de login à nossa área de membros exclusiva."
+              a: "O envio é imediato e 100% automático por WhatsApp e E-mail logo após a confirmação do pagamento."
             },
             {
-              q: "Preciso de um parceiro para treinar?",
-              a: "Muitos dos +150 treinos podem ser feitos sozinho (shadow badminton, footwork, força). Também incluímos treinos específicos para fazer com parceiro. adapte para futevolei"
+              q: "O acesso é vitalício?",
+              a: "Sim! Você paga apenas uma vez e tem acesso permanente para usar e baixar as dinâmicas quando quiser."
             },
             {
-              q: "Tem garantia?",
-              a: "Sim, oferecemos 7 dias de garantia incondicional. Se não gostar do material por qualquer motivo, devolvemos 100% do seu dinheiro."
+              q: "Para quem servem as dinâmicas?",
+              a: "Para treinadores, preparadores de goleiro e goleiros de todos os níveis que querem otimizar seus treinos."
+            },
+            {
+              q: "Preciso de parceiro para treinar?",
+              a: "Não. A maioria das dinâmicas são adaptáveis, permitindo o treino individual ou com companheiros."
+            },
+            {
+              q: "Como funciona a garantia de 7 dias?",
+              a: "Se por qualquer motivo você achar que o material não é para você, basta pedir o reembolso e devolvemos todo o seu dinheiro."
             }
           ].map((faq, i) => (
-            <details key={i} className="group border border-[#FACC15]/20 rounded-lg mb-3 bg-white overflow-hidden text-left">
+            <details key={i} className="group border border-[#00B259]/20 rounded-lg mb-3 bg-white overflow-hidden text-left">
               <summary className="w-full text-left px-4 py-3 md:px-5 md:py-4 font-semibold text-gray-800 flex justify-between items-center focus:outline-none hover:bg-gray-50 text-sm md:text-base cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                 {faq.q}
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down w-5 h-5 text-gray-500 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"></path></svg>
               </summary>
               <div className="px-4 pb-4 md:px-5 md:pb-5 text-gray-600 text-sm md:text-base leading-relaxed border-t border-gray-100 pt-3">
-                {faq.a.replace("(adapte para futevolei)", "").replace("(shadow badminton, footwork, força)", "(embaixadinhas, controle de bola, fortalecimento, parede)").replace("a pegada na raquete", "os fundamentos mais simples, como domínio e passe,")}
+                {faq.a}
               </div>
             </details>
           ))}
@@ -378,7 +412,7 @@ export default function App() {
 
       <footer className="bg-white text-gray-500 py-8 md:py-10 px-4 text-center text-xs md:text-sm border-t-4 border-white">
         <div className="max-w-4xl mx-auto">
-          <p>© 2026 Treinos de Futefutevôlei. Todos os direitos reservados.</p>
+          <p>© 2026 Treinos de Goleiros. Todos os direitos reservados.</p>
         </div>
       </footer>
     </div>
