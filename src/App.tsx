@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function App() {
   const [showDownsell, setShowDownsell] = useState(false);
@@ -151,7 +151,7 @@ export default function App() {
         </h1>
 
         <div className="mb-8 md:mb-10 flex justify-center px-4 sm:px-0">
-          <img decoding="async" alt="Treinos de Goleiros Mockup" className="max-w-[400px] sm:max-w-[485px] w-full h-auto drop-shadow-md rounded-lg" referrerPolicy="no-referrer" src="https://i.ibb.co/Qjx0XrXb/Untitled-design-7.webp" />
+          <img fetchPriority="high" loading="eager" alt="Treinos de Goleiros Mockup" className="max-w-[400px] sm:max-w-[485px] w-full h-auto drop-shadow-md rounded-lg" referrerPolicy="no-referrer" src="https://i.ibb.co/Qjx0XrXb/Untitled-design-7.webp" />
         </div>
         <div className="flex flex-col items-center pb-8 md:pb-16 mt-4">
           <button 
@@ -226,7 +226,7 @@ export default function App() {
               >
                 {feedbacks.map((src, index) => (
                   <div key={index} className="w-full flex-shrink-0">
-                    <img alt={`Feedback ${index + 1}`} className="w-full h-auto object-cover" src={src} />
+                    <img loading="lazy" decoding="async" alt={`Feedback ${index + 1}`} className="w-full h-auto object-cover" src={src} referrerPolicy="no-referrer" />
                   </div>
                 ))}
               </div>
