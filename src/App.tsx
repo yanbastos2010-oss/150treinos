@@ -67,7 +67,7 @@ export default function App() {
       )}
       {showBasicUpsell && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm">
-          <div className="relative w-full max-w-[420px] max-h-[94vh] sm:max-h-[90vh] bg-white rounded-2xl md:rounded-[1.5rem] flex flex-col font-sans shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
+          <div className="relative w-full max-w-[385px] max-h-[95vh] sm:max-h-[92vh] bg-white rounded-2xl md:rounded-[1.5rem] flex flex-col font-sans shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
             <div className="bg-[#00B259] text-center pt-5 pb-4 px-5 sm:pt-6 sm:px-6 sm:pb-5 relative shrink-0">
               <button 
                 type="button" 
@@ -151,7 +151,7 @@ export default function App() {
         </h1>
 
         <div className="mb-8 md:mb-10 flex justify-center px-4 sm:px-0">
-          <img decoding="async" alt="Treinos de Goleiros Mockup" className="max-w-[480px] sm:max-w-[560px] w-full h-auto drop-shadow-md rounded-lg" referrerPolicy="no-referrer" src="https://i.ibb.co/Qjx0XrXb/Untitled-design-7.webp" />
+          <img decoding="async" alt="Treinos de Goleiros Mockup" className="max-w-[400px] sm:max-w-[485px] w-full h-auto drop-shadow-md rounded-lg" referrerPolicy="no-referrer" src="https://i.ibb.co/Qjx0XrXb/Untitled-design-7.webp" />
         </div>
         <div className="flex flex-col items-center pb-8 md:pb-16 mt-4">
           <button 
