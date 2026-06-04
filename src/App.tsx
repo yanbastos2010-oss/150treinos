@@ -10,9 +10,9 @@ export default function App() {
   const [showBasicUpsell, setShowBasicUpsell] = useState(false);
   const [currentFeedback, setCurrentFeedback] = useState(0);
   const feedbacks = [
-    'https://i.ibb.co/vx4vnvbP/Chat-GPT-Image-3-de-jun-de-2026-22-14-14.png',
+    'https://i.ibb.co/PvQZm6y9/Chat-GPT-Image-3-de-jun-de-2026-21-42-52.png',
     'https://i.ibb.co/R4gzttWW/Chat-GPT-Image-3-de-jun-de-2026-22-03-35.png',
-    'https://i.ibb.co/PvQZm6y9/Chat-GPT-Image-3-de-jun-de-2026-21-42-52.png'
+    'https://i.ibb.co/Xf5kS6dF/Chat-GPT-Image-3-de-jun-de-2026-22-45-15.png'
   ];
 
   const nextFeedback = () => setCurrentFeedback((prev) => (prev + 1) % feedbacks.length);
@@ -67,7 +67,7 @@ export default function App() {
       )}
       {showBasicUpsell && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm">
-          <div className="relative w-full max-w-[420px] max-h-[90vh] sm:max-h-[90vh] bg-white rounded-2xl md:rounded-[1.5rem] flex flex-col font-sans shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 border-4 border-[#00B259]">
+          <div className="relative w-full max-w-[420px] max-h-[94vh] sm:max-h-[90vh] bg-white rounded-2xl md:rounded-[1.5rem] flex flex-col font-sans shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
             <div className="bg-[#00B259] text-center pt-5 pb-4 px-5 sm:pt-6 sm:px-6 sm:pb-5 relative shrink-0">
               <button 
                 type="button" 
@@ -151,7 +151,7 @@ export default function App() {
         </h1>
 
         <div className="mb-8 md:mb-10 flex justify-center px-4 sm:px-0">
-          <img decoding="async" alt="Treinos de Goleiros Mockup" className="max-w-full h-auto drop-shadow-md rounded-lg" referrerPolicy="no-referrer" src="https://i.ibb.co/Qjx0XrXb/Untitled-design-7.webp" />
+          <img decoding="async" alt="Treinos de Goleiros Mockup" className="max-w-[480px] sm:max-w-[560px] w-full h-auto drop-shadow-md rounded-lg" referrerPolicy="no-referrer" src="https://i.ibb.co/Qjx0XrXb/Untitled-design-7.webp" />
         </div>
         <div className="flex flex-col items-center pb-8 md:pb-16 mt-4">
           <button 
