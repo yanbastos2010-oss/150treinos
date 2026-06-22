@@ -146,12 +146,19 @@ export default function App() {
       </div>
 
       <div className="max-w-4xl mx-auto pt-8">
-        <h1 className="text-[30px] font-black leading-tight mb-4 md:mb-6 text-gray-900 text-center font-['Plus_Jakarta_Sans']">
+        <h1 className="text-[30px] font-extrabold tracking-tight leading-[115%] sm:leading-[110%] text-slate-900 text-center font-sans mb-4 md:mb-6">
           +250 Dinâmicas para <span className="text-[#00B259]">Treinos de Goleiros</span> prontas para aplicar
         </h1>
 
         <div className="mb-8 md:mb-10 flex justify-center px-4 sm:px-0">
-          <img fetchPriority="high" loading="eager" alt="Treinos de Goleiros Mockup" className="max-w-[400px] sm:max-w-[485px] w-full h-auto drop-shadow-md rounded-lg" referrerPolicy="no-referrer" src="https://i.ibb.co/Qjx0XrXb/Untitled-design-7.webp" />
+          <img 
+            fetchPriority="high" 
+            loading="eager" 
+            alt="Treinos de Goleiros Mockup" 
+            className="max-w-[400px] sm:max-w-[485px] w-full h-auto" 
+            referrerPolicy="no-referrer" 
+            src="https://i.ibb.co/MxsBHxFH/Chat-GPT-Image-21-de-jun-de-2026-21-04-33.png" 
+          />
         </div>
         <div className="flex flex-col items-center pb-8 md:pb-16 mt-4">
           <button 
