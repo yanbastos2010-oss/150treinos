@@ -157,7 +157,7 @@ export default function App() {
             alt="Treinos de Goleiros Mockup" 
             className="max-w-[400px] sm:max-w-[485px] w-full h-auto" 
             referrerPolicy="no-referrer" 
-            src="https://i.ibb.co/MxsBHxFH/Chat-GPT-Image-21-de-jun-de-2026-21-04-33.png" 
+            src="https://i.ibb.co/Qjx0XrXb/Untitled-design-7.webp" 
           />
         </div>
         <div className="flex flex-col items-center pb-8 md:pb-16 mt-4">
