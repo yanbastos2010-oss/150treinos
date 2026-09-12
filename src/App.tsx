@@ -138,8 +138,8 @@ export default function App() {
         </div>
       )}
 
-      <div className="w-full bg-red-600 py-3.5 px-4 text-center border-b border-red-700">
-        <div className="flex items-center justify-center gap-2.5 text-sm sm:text-base md:text-lg font-black tracking-wide text-white">
+      <div className="w-full bg-red-600 py-2 px-4 text-center border-b border-red-700">
+        <div className="flex items-center justify-center gap-2.5 text-xs sm:text-sm font-black tracking-wide text-white">
           DESCONTO SÓ HOJE NESSA PÁGINA - {new Date().toLocaleDateString('pt-BR')}
         </div>
       </div>
