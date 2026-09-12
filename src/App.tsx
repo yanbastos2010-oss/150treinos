@@ -138,10 +138,9 @@ export default function App() {
         </div>
       )}
 
-      <div className="w-full bg-slate-900 py-2.5 px-4 text-center">
-        <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs font-semibold tracking-wide text-slate-200">
-          <span className="w-2 h-2 bg-[#00B259] rounded-full animate-pulse"></span>
-          OFERTA VÁLIDA ATÉ HOJE <span className="text-white font-medium">({new Date().toLocaleDateString('pt-BR')})</span>
+      <div className="w-full bg-red-600 py-3.5 px-4 text-center border-b border-red-700">
+        <div className="flex items-center justify-center gap-2.5 text-sm sm:text-base md:text-lg font-black tracking-wide text-white">
+          DESCONTO SÓ HOJE NESSA PÁGINA - {new Date().toLocaleDateString('pt-BR')}
         </div>
       </div>
 
@@ -164,108 +163,109 @@ export default function App() {
           <button 
             type="button" 
             onClick={() => document.getElementById('oferta')?.scrollIntoView({ behavior: 'smooth' })} 
-            className="w-[85%] max-w-[240px] sm:w-[220px] h-[50px] px-8 sm:px-10 rounded-full font-semibold transition-all flex items-center justify-center gap-2 text-[14px] sm:text-base cursor-pointer whitespace-nowrap bg-[#00B259] text-white hover:bg-[#009A4D] shadow-sm hover:shadow" 
+            className="w-full max-w-[240px] h-[60px] px-8 sm:px-10 rounded-lg font-black transition-all flex items-center justify-center gap-2 text-lg sm:text-xl cursor-pointer whitespace-nowrap bg-[#00B259] text-white hover:bg-[#009A4D] shadow-sm hover:shadow" 
             id="6040b8d1-48ee-ef7f-0c73-c68186954454"
           >
-            Quero Agora!
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right shrink-0" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            QUERO AGORA
           </button>
-          <div className="mt-2 flex flex-col sm:flex-row items-center gap-2 justify-center">
-            <div className="flex items-center gap-0.5">
-              <span className="text-yellow-400 text-sm leading-none">⭐</span>
-              <span className="text-yellow-400 text-sm leading-none">⭐</span>
-              <span className="text-yellow-400 text-sm leading-none">⭐</span>
-              <span className="text-yellow-400 text-sm leading-none">⭐</span>
-              <span className="text-yellow-400 text-sm leading-none">⭐</span>
-            </div>
-            <p className="text-xs font-bold text-slate-700 tracking-wider">+5MIL AVALIAÇÕES</p>
-          </div>
         </div>
       </div>
 
       <section className="py-12 md:py-16 bg-gray-50 border-t-4 border-white font-sans">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 md:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 md:mb-4 px-4 sm:px-0">O Que Você Vai Receber</h2>
-
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 md:mb-4 px-4 sm:px-0">Feito Para Facilitar Seus Treinos</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {/* Card 1: +250 Dinâmicas Prontas */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {/* Card 1 */}
             <div className="bg-white p-6 sm:p-8 rounded-2xl border-2 border-slate-200 hover:shadow-lg transition-all flex flex-col items-center text-center">
               <div className="w-12 h-12 bg-[#00B259] rounded-xl flex items-center justify-center text-white mb-5 shadow-[0_4px_12px_rgba(0,178,89,0.2)]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-trophy w-6 h-6 shrink-0" aria-hidden="true"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"></path><path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"></path><path d="M18 9h1.5a1 1 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"></path><path d="M6 9H4.5a1 1 0 0 1 0-5H6"></path></svg>
+                <svg className="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 leading-tight">+250 Dinâmicas Prontas</h3>
-              <p className="text-[13px] sm:text-sm text-slate-600 leading-relaxed">Dinâmicas organizadas e fáceis de aplicar nos treinos. É só abrir e começar.</p>
+              <p className="text-[13px] sm:text-sm text-slate-600 leading-relaxed">Tenha diversas opções de exercícios para montar treinos diferentes sem precisar criar tudo do zero.</p>
             </div>
-
-            {/* Card 2: Para Todos os Níveis */}
+            
+            {/* Card 2 */}
             <div className="bg-white p-6 sm:p-8 rounded-2xl border-2 border-slate-200 hover:shadow-lg transition-all flex flex-col items-center text-center">
               <div className="w-12 h-12 bg-[#00B259] rounded-xl flex items-center justify-center text-white mb-5 shadow-[0_4px_12px_rgba(0,178,89,0.2)]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-book-open w-6 h-6 shrink-0" aria-hidden="true"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>
+                <svg className="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 leading-tight">Para Todos os Níveis</h3>
-              <p className="text-[13px] sm:text-sm text-slate-600 leading-relaxed">Do iniciante ao avançado, com evolução técnica progressiva.</p>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 leading-tight">Economize Tempo Planejando</h3>
+              <p className="text-[13px] sm:text-sm text-slate-600 leading-relaxed">Reduza o tempo gasto procurando ideias e preparando cada sessão de treinamento.</p>
             </div>
 
-            {/* Card 3: 100% Organizado */}
+            {/* Card 3 */}
             <div className="bg-white p-6 sm:p-8 rounded-2xl border-2 border-slate-200 hover:shadow-lg transition-all flex flex-col items-center text-center">
               <div className="w-12 h-12 bg-[#00B259] rounded-xl flex items-center justify-center text-white mb-5 shadow-[0_4px_12px_rgba(0,178,89,0.2)]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-target w-6 h-6 shrink-0" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                <svg className="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 leading-tight">100% Organizadas</h3>
-              <p className="text-[13px] sm:text-sm text-slate-600 leading-relaxed">Separadas por nível, objetivo e fundamento (posicionamento, defesas, saídas do gol, reposição, 1x1 e mais).</p>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 leading-tight">Mais Variedade nos Treinos</h3>
+              <p className="text-[13px] sm:text-sm text-slate-600 leading-relaxed">Evite repetir sempre os mesmos exercícios e mantenha os treinamentos mais completos.</p>
+            </div>
+
+            {/* Card 4 */}
+            <div className="bg-white p-6 sm:p-8 rounded-2xl border-2 border-slate-200 hover:shadow-lg transition-all flex flex-col items-center text-center">
+              <div className="w-12 h-12 bg-[#00B259] rounded-xl flex items-center justify-center text-white mb-5 shadow-[0_4px_12px_rgba(0,178,89,0.2)]">
+                <svg className="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 leading-tight">Para Diferentes Níveis</h3>
+              <p className="text-[13px] sm:text-sm text-slate-600 leading-relaxed">Encontre dinâmicas que podem ser utilizadas com goleiros iniciantes e mais experientes.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-white" id="feedbacks">
-        <div className="container mx-auto px-4 sm:px-6">
+      <section className="py-12 md:py-16 bg-white font-sans border-t-4 border-slate-100">
+        <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
           <div className="text-center mb-10 md:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 md:mb-4 px-2 sm:px-0 whitespace-nowrap">Feedbacks de quem usou</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 md:mb-4 px-4 sm:px-0">O Que Você Vai Trabalhar nos Treinos</h2>
           </div>
-          <div className="max-w-[280px] sm:max-w-xl mx-auto relative group">
-            <div className="overflow-hidden rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl bg-slate-900">
-              <div 
-                className="flex transition-transform duration-500 ease-out" 
-                style={{ transform: `translateX(-${currentFeedback * 100}%)` }}
-              >
-                {feedbacks.map((src, index) => (
-                  <div key={index} className="w-full flex-shrink-0">
-                    <img loading="lazy" decoding="async" alt={`Feedback ${index + 1}`} className="w-full h-auto object-cover" src={src} referrerPolicy="no-referrer" />
+          
+          <div className="max-w-2xl mx-auto">
+            <ul className="flex flex-col gap-4 sm:gap-5">
+              {[
+                "Agilidade",
+                "Posicionamento",
+                "Quedas e Defesas",
+                "Saídas do Gol",
+                "Jogo com os Pés",
+                "Reposição de Bola",
+                "Tomada de Decisão"
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-4 text-base sm:text-xl font-semibold text-slate-800 bg-white p-4 sm:p-5 rounded-2xl border-2 border-slate-200 shadow-sm hover:border-[#00B259] transition-colors">
+                  <div className="bg-[#00B259] rounded-full p-1.5 shrink-0 shadow-sm">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" strokeWidth="3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
                   </div>
-                ))}
-              </div>
-            </div>
-            <button 
-              onClick={prevFeedback}
-              className="absolute left-[-15px] sm:left-[-30px] top-1/2 -translate-y-1/2 w-9 h-9 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center text-slate-900 hover:bg-slate-50 transition-all shadow-lg z-30 cursor-pointer" 
-              id="2260ea4b-adca-5b4c-9091-8b439ae8ea8b"
-              aria-label="Feedback anterior"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-left sm:hidden" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-left hidden sm:block" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
-            </button>
-            <button 
-              onClick={nextFeedback}
-              className="absolute right-[-15px] sm:right-[-30px] top-1/2 -translate-y-1/2 w-9 h-9 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center text-slate-900 hover:bg-slate-50 transition-all shadow-lg z-30 cursor-pointer" 
-              id="61a38552-b42b-9f64-9356-98e1ca45871a"
-              aria-label="Próximo feedback"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-right sm:hidden" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-right hidden sm:block" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
-            </button>
-            <div className="flex justify-center gap-2 mt-8">
-              {feedbacks.map((_, index) => (
-                <button 
-                  key={index}
-                  onClick={() => setCurrentFeedback(index)}
-                  className={`h-2 sm:h-3 rounded-full transition-all cursor-pointer ${currentFeedback === index ? 'bg-[#00B259] w-6 sm:w-8' : 'bg-slate-300 w-2 sm:w-3'}`} 
-                  id={`feedback-dot-${index}`}
-                ></button>
+                  {item}
+                </li>
               ))}
-            </div>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Bônus Exclusivos Section */}
+      <section className="py-12 md:py-20 bg-slate-50 font-sans text-slate-900 border-t-4 border-slate-100">
+        <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 md:mb-4 px-4 sm:px-0">Comprando Hoje Você Ganha <span className="text-[#00B259]">Bônus Exclusivos</span></h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              { desc: "Planilha de Acompanhamento e Evolução do Atleta.", val: "R$ 27,00" },
+              { desc: "Manual de Preparação Física Específica para Goleiros.", val: "R$ 27,00" },
+              { desc: "Acesso ao Grupo VIP para troca de experiências.", val: "R$ 27,00" }
+            ].map((bonus, i) => (
+              <div key={i} className="bg-white p-6 sm:p-8 rounded-2xl border-2 border-slate-200 shadow-sm relative flex flex-col items-start text-left hover:border-[#00B259] transition-all">
+                <p className="text-xl sm:text-2xl text-slate-800 font-bold mb-6 flex-grow leading-snug">{bonus.desc}</p>
+                <div className="w-full pt-4 border-t border-slate-100">
+                  <p className="text-red-500 text-lg font-bold line-through mb-1">{bonus.val}</p>
+                  <p className="text-[#00B259] font-black text-xl">HOJE: GRÁTIS</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -275,15 +275,14 @@ export default function App() {
           <div className="text-center mb-10 md:mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 md:mb-4 px-4 sm:px-0">Escolha seu Plano</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto px-2 sm:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto w-full">
             {/* PLAN 1: R$10 (Standard / Básico) */}
-            <div className="bg-slate-50 p-6 sm:p-10 rounded-2xl border-2 border-slate-200 flex flex-col relative shadow-md text-slate-800 hover:border-slate-300 transition-all">
-              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-center text-slate-900 mt-2 sm:mt-0">Plano Básico</h3>
+            <div className="bg-white p-5 sm:p-10 rounded-2xl border-2 border-slate-200 flex flex-col relative shadow-md text-slate-800 hover:border-slate-300 transition-all">
+              <h3 className="text-2xl sm:text-3xl font-black mb-2 text-center text-slate-900 mt-2 sm:mt-0">Plano Básico</h3>
               
               <div className="text-center w-full mb-8">
-                <div className="text-slate-400 line-through text-sm mb-1">R$ 47,00</div>
                 <div className="flex items-baseline justify-center mb-1 text-slate-950">
-                  <span className="text-xl sm:text-2xl font-bold">R$</span><span className="text-5xl sm:text-6xl font-bold tracking-tight">10</span><span className="text-xl sm:text-2xl font-bold">,00</span>
+                  <span className="text-3xl sm:text-4xl font-bold">R$</span><span className="text-5xl sm:text-6xl font-bold tracking-tight">10</span>
                 </div>
                 <div className="text-slate-500 text-xs mt-1">pagamento único</div>
               </div>
@@ -291,23 +290,20 @@ export default function App() {
               <ul className="text-left w-full space-y-4 mb-8">
                 {[
                   { text: "+250 Dinâmicas para Treinos de Goleiros", checked: true },
-                  { text: "Acesso Digital", checked: true },
-                  { text: "Garantia de 7 dias", checked: true },
+                  { text: "Acesso Digital e Vítalicio", checked: true },
+                  { text: "Garantia de 30 dias", checked: true },
                   { text: "Bônus Exclusivos", checked: false },
                   { text: "Atualizações Mensais", checked: false },
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-[13px] sm:text-sm">
+                  <li key={i} className="flex items-start gap-3 text-[15px] sm:text-[16px] font-medium">
                     {item.checked ? (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check text-[#00B259] shrink-0 mt-0.5" aria-hidden="true">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="m9 12 2 2 4-4"></path>
-                      </svg>
+                      <div className="bg-[#00B259] rounded-full p-1 shrink-0 mt-0.5 shadow-sm">
+                        <svg className="w-3 h-3 text-white" strokeWidth="3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                      </div>
                     ) : (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-x text-red-500 shrink-0 mt-0.5" aria-hidden="true">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="m15 9-6 6"></path>
-                        <path d="m9 9 6 6"></path>
-                      </svg>
+                      <div className="bg-red-500 rounded-full p-1 shrink-0 mt-0.5">
+                        <svg className="w-3 h-3 text-white" strokeWidth="3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+                      </div>
                     )}
                     <span className="leading-tight text-slate-700">
                       {item.text}
@@ -320,45 +316,65 @@ export default function App() {
                 <button 
                   type="button"
                   onClick={() => setShowBasicUpsell(true)}
-                  className="w-[85%] max-w-[240px] sm:w-[220px] h-[50px] px-8 sm:px-10 rounded-full font-semibold transition-all flex items-center justify-center gap-2 text-[14px] sm:text-base cursor-pointer whitespace-nowrap bg-slate-900 text-white hover:bg-slate-800 shadow-sm hover:shadow animate-scale-pulse" 
+                  className="w-full h-[54px] rounded-lg font-bold transition-all flex items-center justify-center gap-2 text-[15px] sm:text-base cursor-pointer bg-slate-900 text-white hover:bg-slate-800 shadow-sm hover:shadow" 
                   id="checkout-basico-btn"
                 >
-                  Comprar agora!
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right shrink-0" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                  QUERO O PLANO BÁSICO
                 </button>
-                <div className="text-slate-500 text-xs font-medium italic">Acesso Imediato e Vitalício</div>
               </div>
             </div>
 
             {/* PLAN 2: R$27 (Premium / Profissional Completo) */}
-            <div className="bg-slate-900 p-6 sm:p-10 rounded-2xl border border-slate-800 flex flex-col relative shadow-xl text-white">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#00B259] text-white font-bold px-6 py-1.5 rounded-full text-xs flex items-center gap-2 whitespace-nowrap uppercase tracking-wider">Mais Escolhido</div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-center text-white mt-2 sm:mt-0">Plano Premium</h3>
+            <div className="bg-white p-5 sm:p-10 rounded-2xl border-2 border-[#00B259] flex flex-col relative shadow-xl text-slate-800 transition-all">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#00B259] text-white font-bold px-6 py-1.5 rounded-full text-xs flex items-center gap-2 whitespace-nowrap uppercase tracking-wider shadow-sm">Mais Popular</div>
+              <h3 className="text-2xl sm:text-3xl font-black mb-2 text-center text-slate-900 mt-2 sm:mt-0">Plano Completo</h3>
               
               <div className="mt-4"></div>
 
               <div className="text-center w-full mb-8">
-                <div className="text-slate-400 line-through text-sm mb-1">R$ 97,00</div>
-                <div className="flex items-baseline justify-center mb-1 text-white">
-                  <span className="text-xl sm:text-2xl font-bold">R$</span><span className="text-5xl sm:text-6xl font-bold tracking-tight">27</span><span className="text-xl sm:text-2xl font-bold">,00</span>
+                <div className="flex items-baseline justify-center mb-1 text-[#00B259]">
+                  <span className="text-3xl sm:text-4xl font-bold">R$</span><span className="text-6xl sm:text-7xl font-bold tracking-tight">27</span>
                 </div>
-                <div className="text-slate-400 text-xs mt-1">pagamento único</div>
+                <div className="text-slate-500 text-xs mt-1">pagamento único</div>
               </div>
 
               <ul className="text-left w-full space-y-4 mb-8">
-                {[
-                  "+250 Dinâmicas para Treinos de Goleiros",
-                  "Organizadas por Categorias",
-                  "Método Passo a Passo",
-                  "+ Bônus Exclusivos",
-                  "Atualizações Mensais",
-                  "Entrega via WhatsApp + Email",
-                  "Suporte VIP 24/7",
-                  "Garantia de 7 dias",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-slate-300 text-[13px] sm:text-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-circle-check text-[#00B259] shrink-0 mt-0.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
-                    <span className="leading-tight">{item}</span>
+                <li className="flex items-start gap-3 text-slate-700 text-[15px] sm:text-[16px] font-medium">
+                  <div className="bg-[#00B259] rounded-full p-1 shrink-0 mt-0.5 shadow-sm">
+                    <svg className="w-3 h-3 text-white" strokeWidth="3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                  </div>
+                  <span className="leading-tight">+250 Dinâmicas para Treinos de Goleiros</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-700 text-[15px] sm:text-[16px] font-medium">
+                  <div className="bg-[#00B259] rounded-full p-1 shrink-0 mt-0.5 shadow-sm">
+                    <svg className="w-3 h-3 text-white" strokeWidth="3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                  </div>
+                  <span className="leading-tight">Acesso Digital e Vítalicio</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-700 text-[15px] sm:text-[16px] font-medium">
+                  <div className="bg-[#00B259] rounded-full p-1 shrink-0 mt-0.5 shadow-sm">
+                    <svg className="w-3 h-3 text-white" strokeWidth="3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                  </div>
+                  <span className="leading-tight">Garantia de 30 dias</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-700 text-[15px] sm:text-[16px] font-medium">
+                  <div className="bg-[#00B259] rounded-full p-1 shrink-0 mt-0.5 shadow-sm">
+                    <svg className="w-3 h-3 text-white" strokeWidth="3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                  </div>
+                  <span className="leading-tight">Atualizações Mensais</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-700 text-[15px] sm:text-[16px] font-medium">
+                  <div className="bg-[#00B259] rounded-full p-1 shrink-0 mt-0.5 shadow-sm">
+                    <svg className="w-3 h-3 text-white" strokeWidth="3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                  </div>
+                  <span className="leading-tight">Suporte Prioritário</span>
+                </li>
+                {[1, 2, 3].map((num) => (
+                  <li key={`bonus-${num}`} className="flex items-start gap-3 text-slate-700 text-[15px] sm:text-[16px] font-medium">
+                    <div className="bg-[#00B259] rounded-full p-1 shrink-0 mt-0.5 shadow-sm">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-gift"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>
+                    </div>
+                    <span className="leading-tight">Bônus Exclusivo {num}</span>
                   </li>
                 ))}
               </ul>
@@ -366,18 +382,18 @@ export default function App() {
               <div className="flex flex-col items-center gap-3 w-full mt-auto">
                 <a 
                   href="https://checkout.materialcompleto.shop/VCCL1O8SD2NE" 
-                  className="w-[85%] max-w-[240px] sm:w-[220px] h-[50px] px-8 sm:px-10 rounded-full font-semibold transition-all flex items-center justify-center gap-2 text-[14px] sm:text-base cursor-pointer whitespace-nowrap bg-[#00B259] text-white hover:bg-[#009A4D] shadow-sm hover:shadow animate-scale-pulse" 
+                  className="w-full h-[64px] rounded-lg font-black transition-all flex items-center justify-center gap-2 text-[16px] sm:text-xl cursor-pointer bg-[#00B259] text-white hover:bg-[#009A4D] shadow-sm hover:shadow" 
                   id="checkout-premium-btn"
                 >
-                  Comprar agora!
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right shrink-0" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                  QUERO O PACOTE COMPLETO
                 </a>
-                <div className="text-slate-400 text-xs font-medium italic">Acesso Imediato e Vitalício</div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* SEÇÃO DE GARANTIA E FEEDBACK REMOVIDAS */}
 
       <section className="py-12 md:py-16 px-4 bg-gray-50 border-t-4 border-white">
         <div className="max-w-3xl mx-auto">
@@ -385,7 +401,7 @@ export default function App() {
           {[
             {
               q: "Como vou receber o acesso?",
-              a: "O envio é imediato e 100% automático por WhatsApp e E-mail logo após a confirmação do pagamento."
+              a: "O envio é imediato e 100% automático por E-mail logo após a confirmação do pagamento."
             },
             {
               q: "O acesso é vitalício?",
