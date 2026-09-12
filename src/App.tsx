@@ -120,18 +120,18 @@ export default function App() {
  
               <div className="w-full space-y-2.5 sm:space-y-4 shrink-0 mt-auto">
                 <a 
-                  href="https://checkout.materialcompleto.shop/VCCL1O8SD2NF" 
+                  href="https://ggcheckout.app/checkout/v5/p5swcT0oUdfgaSGO883l" 
                   className="px-5 transition-all flex items-center justify-center gap-2 cursor-pointer w-full bg-[#00B259] hover:bg-[#009A4D] text-white font-black text-[13px] sm:text-[15px] py-3.5 sm:py-4 rounded-xl shadow-[0_4px_20px_rgba(0,178,89,0.35)] uppercase tracking-wide text-center"
                 >
                   SIM, QUERO O PLANO COMPLETO!
                 </a>
-                <a 
-                  href="https://checkout.materialcompleto.shop/VCCL1O8SD2NG" 
-                  onClick={() => setShowBasicUpsell(false)} 
-                  className="text-slate-500 hover:text-slate-800 text-center font-bold text-xs sm:text-sm transition-colors underline decoration-slate-300 underline-offset-4 py-1 block w-full"
+                <button 
+                  type="button"
+                  onClick={() => window.location.href = "https://ggcheckout.app/checkout/v5/2aO28BERC0LdTR8bY9P2"} 
+                  className="text-slate-500 hover:text-slate-800 text-center font-bold text-xs sm:text-sm transition-colors underline decoration-slate-300 underline-offset-4 py-1 block w-full bg-transparent border-0 cursor-pointer"
                 >
                   Não, prefiro o plano básico
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -254,9 +254,9 @@ export default function App() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {[
-              { desc: "Planilha de Acompanhamento e Evolução do Atleta.", val: "R$ 27,00" },
-              { desc: "Manual de Preparação Física Específica para Goleiros.", val: "R$ 27,00" },
-              { desc: "Acesso ao Grupo VIP para troca de experiências.", val: "R$ 27,00" }
+              { desc: "Planilha de Acompanhamento e Evolução do Atleta", val: "R$ 27,00" },
+              { desc: "Manual de Preparação Física Específica para Goleiros", val: "R$ 27,00" },
+              { desc: "Planilha de Controle Financeiro", val: "R$ 27,00" }
             ].map((bonus, i) => (
               <div key={i} className="bg-white p-6 sm:p-8 rounded-2xl border-2 border-slate-200 shadow-sm relative flex flex-col items-start text-left hover:border-[#00B259] transition-all">
                 <p className="text-xl sm:text-2xl text-slate-800 font-bold mb-6 flex-grow leading-snug">{bonus.desc}</p>
@@ -313,14 +313,13 @@ export default function App() {
               </ul>
 
               <div className="flex flex-col items-center gap-3 w-full mt-auto">
-                <button 
-                  type="button"
-                  onClick={() => setShowBasicUpsell(true)}
+                <a 
+                  href="https://ggcheckout.app/checkout/v5/2aO28BERC0LdTR8bY9P2"
                   className="w-full h-[54px] rounded-lg font-bold transition-all flex items-center justify-center gap-2 text-[15px] sm:text-base cursor-pointer bg-slate-900 text-white hover:bg-slate-800 shadow-sm hover:shadow" 
                   id="checkout-basico-btn"
                 >
                   QUERO O PLANO BÁSICO
-                </button>
+                </a>
               </div>
             </div>
 
@@ -381,7 +380,7 @@ export default function App() {
 
               <div className="flex flex-col items-center gap-3 w-full mt-auto">
                 <a 
-                  href="https://checkout.materialcompleto.shop/VCCL1O8SD2NE" 
+                  href="https://ggcheckout.app/checkout/v5/p5swcT0oUdfgaSGO883l" 
                   className="w-full h-[64px] rounded-lg font-black transition-all flex items-center justify-center gap-2 text-[16px] sm:text-xl cursor-pointer bg-[#00B259] text-white hover:bg-[#009A4D] shadow-sm hover:shadow" 
                   id="checkout-premium-btn"
                 >
