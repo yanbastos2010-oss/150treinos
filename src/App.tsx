@@ -120,7 +120,7 @@ export default function App() {
  
               <div className="w-full space-y-2.5 sm:space-y-4 shrink-0 mt-auto">
                 <a 
-                  href="https://ggcheckout.app/checkout/v5/p5swcT0oUdfgaSGO883l" 
+                  href="https://ggcheckout.app/checkout/v5/dLXyLY4oulqhdaJvHrl2" 
                   className="px-5 transition-all flex items-center justify-center gap-2 cursor-pointer w-full bg-[#00B259] hover:bg-[#009A4D] text-white font-black text-[13px] sm:text-[15px] py-3.5 sm:py-4 rounded-xl shadow-[0_4px_20px_rgba(0,178,89,0.35)] uppercase tracking-wide text-center"
                 >
                   SIM, QUERO O PLANO COMPLETO!
@@ -313,13 +313,14 @@ export default function App() {
               </ul>
 
               <div className="flex flex-col items-center gap-3 w-full mt-auto">
-                <a 
-                  href="https://ggcheckout.app/checkout/v5/2aO28BERC0LdTR8bY9P2"
+                <button 
+                  type="button"
+                  onClick={() => setShowBasicUpsell(true)}
                   className="w-full h-[54px] rounded-lg font-bold transition-all flex items-center justify-center gap-2 text-[15px] sm:text-base cursor-pointer bg-slate-900 text-white hover:bg-slate-800 shadow-sm hover:shadow" 
                   id="checkout-basico-btn"
                 >
                   QUERO O PLANO BÁSICO
-                </a>
+                </button>
               </div>
             </div>
 
