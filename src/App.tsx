@@ -368,12 +368,16 @@ export default function App() {
                   </div>
                   <span className="leading-tight">Suporte Prioritário</span>
                 </li>
-                {[1, 2, 3].map((num) => (
-                  <li key={`bonus-${num}`} className="flex items-start gap-3 text-slate-700 text-[15px] sm:text-[16px] font-medium">
+                {[
+                  "BÔNUS: Planilha de Acompanhamento e Evolução do Atleta",
+                  "BÔNUS: Manual de Preparação Física Específica para Goleiros",
+                  "BÔNUS: Planilha de Controle Financeiro"
+                ].map((bonusText, idx) => (
+                  <li key={`bonus-${idx}`} className="flex items-start gap-3 text-slate-700 text-[15px] sm:text-[16px] font-medium">
                     <div className="bg-[#00B259] rounded-full p-1 shrink-0 mt-0.5 shadow-sm">
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-gift"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>
                     </div>
-                    <span className="leading-tight">Bônus Exclusivo {num}</span>
+                    <span className="leading-tight">{bonusText}</span>
                   </li>
                 ))}
               </ul>
